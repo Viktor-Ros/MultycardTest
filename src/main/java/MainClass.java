@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainClass {
@@ -81,11 +83,10 @@ public class MainClass {
      */
     public static void listSaveToCSV(List<String> list) {
 
-        File dir = new File("src/main/result");
-        dir.mkdirs();
+        String pathName = "src/main/result/result_" + new SimpleDateFormat("HH_mm_ss").format(new Date()) + ".csv";
         File resultFile = null;
         try {
-            resultFile = File.createTempFile("result",".csv", dir);
+            resultFile = new File(pathName);
             FileWriter fileWriter = new FileWriter(resultFile);
             for(String el : list){
                 fileWriter.write(el + '\n');
